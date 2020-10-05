@@ -65,12 +65,7 @@
             <version>2.1.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.ejb/ejb-api -->
-        <dependency>
-            <groupId>javax.ejb</groupId>
-            <artifactId>ejb-api</artifactId>
-            <version>3.0</version>
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

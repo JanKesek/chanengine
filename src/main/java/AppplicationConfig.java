@@ -6,8 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ApplicationPath("/boards")
-@ApplicationScoped
-@ManagedBean
+//@ApplicationScoped
 public class AppplicationConfig extends Application {
 
     public AppplicationConfig(){}

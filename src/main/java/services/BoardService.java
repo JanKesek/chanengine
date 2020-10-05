@@ -14,7 +14,7 @@ import org.hibernate.query.Query;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-//@Singleton
+@Singleton
 public class BoardService {
     //private Board boardbean;
     //@Inject

@@ -13,9 +13,11 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Named
-@SessionScoped
+//@SessionScoped
 public class ThreadService {
-    private Session session=SessionUtils.getSession();
+    @Inject
+    private Session session;
+    //private Session session=SessionUtils.getSession();
     @Inject
     private Board board;
     public List<Thread> getAllThreadsFromBoard(long id) {

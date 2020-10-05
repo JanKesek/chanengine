@@ -3,7 +3,6 @@ package controllers;
 import models.Thread;
 import services.ThreadService;
 
-import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -14,8 +13,10 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/")
-@RequestScoped
+//@RequestScoped
 public class ThreadController {
+    //
+    //
     //@Inject
     ThreadService threadService=new ThreadService();
     @GET
