@@ -4,12 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-      xsi:schemaLocation="http://xmlns.jcp.org/jsf/core ">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xsi:schemaLocation="http://xmlns.jcp.org/jsf/core">
 <f:view>
    <h:dataTable value="#{boardController.allBoards}" var="b">
-      <h:column>#{b.name}</h:column>
+      <h:column>
+         <h:outputLabel value="#{b.name}"/>
+      </h:column>
    </h:dataTable>
 </f:view>
 </html>
-
