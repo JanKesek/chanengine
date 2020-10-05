@@ -21,6 +21,6 @@ public class Thread {
     @Column
     private Timestamp timestamp;
     @ManyToOne
-    @JoinColumn(name="id",nullable = false)
+    @JoinColumn(name="board_id",nullable = false)
     private Board board;
 }

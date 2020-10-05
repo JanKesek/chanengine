@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity(name = "board")
@@ -16,6 +17,6 @@ public class Board {
     private String name;
     @Column
     private String shorter;
-    @OneToMany(mappedBy = "thread")
+    @OneToMany(mappedBy = "board")
     private List<Thread> threads;
 }

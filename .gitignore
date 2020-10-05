@@ -3,3 +3,4 @@ lib
 chanjsf.iml
 target/
 src/main/resources/hibernate.cfg.xml
+src/main/resources/script.sql
