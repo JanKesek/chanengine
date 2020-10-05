@@ -15,8 +15,8 @@ import java.util.List;
 @Named
 //@SessionScoped
 public class ThreadService {
-    @Inject
-    private Session session;
+
+    private Session session=SessionUtils.getSession();
     //private Session session=SessionUtils.getSession();
     @Inject
     private Board board;

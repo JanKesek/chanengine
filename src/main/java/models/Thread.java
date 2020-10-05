@@ -19,7 +19,7 @@ public class Thread {
     @Column
     private String content;
     @Column
-    private Timestamp timestamp;
+    private Timestamp thread_time;
     @ManyToOne
     @JoinColumn(name="board_id",nullable = false)
     private Board board;
