@@ -11,6 +11,18 @@
    <h:dataTable value="#{boardController.allBoards}" var="b">
       <h:column>
          <h:outputLabel value="#{b.name}"/>
+         <h:link outcome="board.xhtml" value="#{b.id}" includeViewParams="true">
+            <f:param  name="board" value="#{b.id}" />
+         </h:link>
+         <h:form id="form">
+
+            <h:commandButton action="#{threadsByBoard.outcome}" value="Click Me" ajax="true">
+
+               <f:setPropertyActionListener value="#{b.id}" target="#{threadsByBoard.id}"></f:setPropertyActionListener>
+
+            </h:commandButton>
+
+         </h:form>
       </h:column>
    </h:dataTable>
 </f:view>

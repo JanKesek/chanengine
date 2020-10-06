@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
       xml:lang="en" lang="en">
 
 <body>
@@ -11,6 +11,12 @@
     <div id="container">
         <ui:insert name="content"/>
     </div>
+    <h:dataTable value="#{threadsByBoard.threads}" var="p">
+        <h:column>
+            <h:outputText value="#{p.content}"/>
+        </h:column>
+    </h:dataTable>
+
 </f:view>
 </body>
 </html>

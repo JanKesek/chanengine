@@ -16,16 +16,16 @@ import java.util.List;
 
 @Named
 //@ManagedBean
-//@RequestScoped
+@RequestScoped
 //@SessionScoped
 public class ThreadService {
 
-    private Session session=SessionUtils.getSession();
+    private static Session session=SessionUtils.getSession();
     //private Session session=SessionUtils.getSession();
-    @Inject
-    private Board board;
-    public ThreadService() {}
-    public List<Thread> getAllThreadsFromBoard(long id) {
+    //@Inject
+    private static Board board;
+    //public ThreadService() {}
+    public static List<Thread> getAllThreadsFromBoard(long id) {
         //Query query=session.createQuery("FROM thread where shorter= '" +shortName+ "'");
         board=session.get(Board.class, id);
         return board.getThreads();

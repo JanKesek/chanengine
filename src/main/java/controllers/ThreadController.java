@@ -15,22 +15,24 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-@Path("/")
+@Path("/boards")
 //@RequestScoped
 public class ThreadController {
     //
     //
     //@Inject
-    ThreadService threadService=new ThreadService();
+    //@Inject
+    //ThreadService threadService;
+    //ThreadService threadService=new ThreadService();
     @GET
     @Path("/{id}")
     @JsonIgnore
     @Produces({MediaType.APPLICATION_JSON})
     public Response getThreadsByID(@PathParam("id") long id) {
-        List<Thread> threads=threadService.getAllThreadsFromBoard(id);
+        List<Thread> threads=ThreadService.getAllThreadsFromBoard(id);
         List<String> ops=new ArrayList<>();
         //for(Thread t : threads) ops.add(t.getContent());
         for(Thread t: threads) t.setBoard(null);
-        return Response.ok(threads).build();
+        return Response.ok(threads).header("Access-Control-Allow-Origin","http://localhost:5000").build();
     }
 }
