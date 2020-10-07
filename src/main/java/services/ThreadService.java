@@ -21,7 +21,7 @@ import java.util.List;
 //@SessionScoped
 public class ThreadService {
 
-    private static Session session=SessionUtils.getSession();
+    private static Session session=new SessionUtils().getSession();
     //private Session session=SessionUtils.getSession();
     //@Inject
     private static Board board;

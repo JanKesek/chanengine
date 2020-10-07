@@ -12,7 +12,7 @@ import java.io.OutputStream;
 import java.util.Base64;
 
 public class ImageService {
-    private static Session session=SessionUtils.getSession();
+    private static Session session=new SessionUtils().getSession();
     public static long insertImage(String base64) {
         Image image=new Image();
         image.setBase64image(base64);

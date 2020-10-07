@@ -7,20 +7,29 @@ class Posts extends Component {
         const response = await fetch(url);
         const data=await response.json();
         console.log(data);
-        console.log(url);
+        //console.log(url);
         this.setState({posts: data})
     }
     submitHandler = (e) => {
         e.preventDefault();
+        let payload=null;
         const reader=new FileReader();
-        reader.onloadend = () => this.state.imagefilename= reader.result;
-        reader.readAsDataURL(document.getElementById("post-image").files[0]);
         this.state.post_time=new Date().toISOString().split('.')[0].split('T').join(' ');
-        let payload=Object.assign({},this.state);
-        delete payload.posts;
-        console.log("STATE: ", this.state);
-        console.log("PAYLOAD: ",payload);
-        axios.post(`http://localhost:8080/jsfwar3${this.props.match.url}`,payload);
+        reader.onloadend = (async () => {
+            this.state.imagefilename= reader.result;
+            console.log("WHATEVER1");
+            (() => {
+                payload=Object.assign({},this.state)
+                console.log("WHATEVER2")
+            })();
+            delete payload.posts;
+            console.log("STATE: ", this.state);
+            console.log("PAYLOAD: ",payload);
+            axios.post(`http://localhost:8080/jsfwar3${this.props.match.url}`,payload);
+            
+        })
+        reader.readAsDataURL(document.getElementById("post-image").files[0]);
+        //this.setState(this.state)
     }
     changeHandler=(e) => this.setState({[e.target.name]: e.target.value})
     render() {

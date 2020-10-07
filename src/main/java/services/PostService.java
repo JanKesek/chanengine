@@ -15,7 +15,7 @@ import models.Thread;
 @Named
 @RequestScoped
 public class PostService {
-    private static Session session= SessionUtils.getSession();
+    private static Session session= new SessionUtils().getSession();
     public static List<Post> getAllPostsByThreadID(long id) {
         Thread thread= session.get(Thread.class,id);
         return thread.getPosts();
@@ -24,10 +24,14 @@ public class PostService {
         post.setImagefilename(ImageService.saveBase64ToFile(post.getImagefilename()));
         Thread foreignKey=ThreadService.getThreadById(id, session);
         post.setThread(foreignKey);
+        List<Post> thread_posts=foreignKey.getPosts();
+        thread_posts.add(post);
+        foreignKey.setPosts(thread_posts);
         //THERE IS NON-NULL CONSTRAINT VIOLATION WITHOUT THAT
-        post.setThread_id(foreignKey.getId());
+        //post.setThread_id(foreignKey.getId());
         session.beginTransaction();
         session.save(post);
+        session.save(foreignKey);
         session.getTransaction().commit();
     }
     public static void createOP(Thread thread) {
