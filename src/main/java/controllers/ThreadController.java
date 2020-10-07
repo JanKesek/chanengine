@@ -1,15 +1,13 @@
 package controllers;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import models.Post;
 import models.Thread;
 import services.ThreadService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -18,12 +16,7 @@ import java.util.List;
 @Path("/boards")
 //@RequestScoped
 public class ThreadController {
-    //
-    //
-    //@Inject
-    //@Inject
-    //ThreadService threadService;
-    //ThreadService threadService=new ThreadService();
+
     @GET
     @Path("/{id}")
     @JsonIgnore
@@ -32,7 +25,19 @@ public class ThreadController {
         List<Thread> threads=ThreadService.getAllThreadsFromBoard(id);
         List<String> ops=new ArrayList<>();
         //for(Thread t : threads) ops.add(t.getContent());
-        for(Thread t: threads) t.setBoard(null);
+        for(Thread t: threads) {
+            t.setBoard(null);
+            t.setPosts(null);
+        }
         return Response.ok(threads).header("Access-Control-Allow-Origin","http://localhost:5000").build();
+    }
+    @POST
+    @Path("/{id}")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response postThreadToBoard(@PathParam("id") long id, Thread threadIn) {
+        ThreadService.insertThreadToBoard(id,threadIn);
+        return Response.ok(getThreadsByID(id))
+                .header("Access-Control-Allow-Origin","http://localhost:5000").build();
     }
 }

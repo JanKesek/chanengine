@@ -1,7 +1,5 @@
 import React,{Component} from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import Posts from './Posts';
-import Threads from './Threads';
 class Boards extends Component {
     state={boards:null};
     async componentDidMount() {

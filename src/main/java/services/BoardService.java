@@ -22,10 +22,14 @@ public class BoardService {
     //public BoardService(){}
     //@PersistenceContext
     //private Session session=SessionUtils.getSession();
+    private static Session session= SessionUtils.getSession();
     public static List<Board> getAllBoards() {
         Map<String, String> boardIds=new HashMap<>();
-        Session session= SessionUtils.getSession();
         Query query=session.createQuery("FROM board");
         return (List<Board>)query.list();
+    }
+    public static Board getBoardById(long id) {
+        Board board=session.get(Board.class,id);
+        return board;
     }
 }

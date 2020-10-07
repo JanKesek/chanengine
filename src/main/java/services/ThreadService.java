@@ -2,6 +2,7 @@ package services;
 
 import jdk.jfr.Name;
 import models.Board;
+import models.Post;
 import models.SessionUtils;
 import models.Thread;
 import org.hibernate.Session;
@@ -29,5 +30,18 @@ public class ThreadService {
         //Query query=session.createQuery("FROM thread where shorter= '" +shortName+ "'");
         board=session.get(Board.class, id);
         return board.getThreads();
+    }
+    public static void insertThreadToBoard(long board_id, Thread thread) {
+        thread.setBoard(BoardService.getBoardById(board_id));
+        PostService.createOP(thread);
+        session.beginTransaction();
+        session.save(thread);
+        session.getTransaction().commit();
+    }
+    public static Thread getThreadById(long id, Session shared) {
+        //session.beginTransaction();
+        Thread thread= shared.get(Thread.class,id);
+        //ession.getTransaction().commit();
+        return thread;
     }
 }
