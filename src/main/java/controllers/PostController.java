@@ -19,21 +19,32 @@ public class PostController {
         for(Post p:posts) {
             p.setThread(null);
         }
-        return Response.ok(posts).header("Access-Control-Allow-Origin","http://localhost:5000").build();
+        return Response.ok(posts)
+                .header("Access-Control-Allow-Origin","http://localhost:5000")
+                .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Authorization, Content-Type")
+                .header("Content-Type", "application/json").build();
+    }
+    @Path("/{id1}/{id2}")
+    @OPTIONS
+    @Consumes("application/json")
+    public Response corsHeaders() {
+        return Response.ok()
+                .header("Access-Control-Allow-Origin","http://localhost:5000")
+                .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Authorization, Content-Type")
+                .header("Content-Type", "application/json").build();
     }
     @Path("/{id1}/{id2}")
     @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public Response postToThread(@PathParam("id2") long threadId, Post postIn) {
-        try {
-            PostService.createPost(threadId, postIn);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            return Response.status(500).build();
-        }
+    public Response postToThread(@PathParam("id2") long threadId, Post postIn) throws IOException {
+        PostService.createPost(threadId, postIn);
         return Response.ok(PostService.getAllPostsByThreadID(threadId))
-                .header("Access-Control-Allow-Origin","http://localhost:5000").build();
+                .header("Access-Control-Allow-Origin","http://localhost:5000")
+                .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Authorization, Content-Type")
+                .header("Content-Type", "application/json").build();
     }
 }

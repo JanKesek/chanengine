@@ -22,7 +22,10 @@ public class PostService {
     }
     public static void createPost(long id, Post post) throws IOException {
         post.setImagefilename(ImageService.saveBase64ToFile(post.getImagefilename()));
-        post.setThread(ThreadService.getThreadById(id, session));
+        Thread foreignKey=ThreadService.getThreadById(id, session);
+        post.setThread(foreignKey);
+        //THERE IS NON-NULL CONSTRAINT VIOLATION WITHOUT THAT
+        post.setThread_id(foreignKey.getId());
         session.beginTransaction();
         session.save(post);
         session.getTransaction().commit();

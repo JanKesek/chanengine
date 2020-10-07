@@ -26,8 +26,8 @@ public class Post {
     private String content;
     @Column
     private String username;
-    //@Column
-    //private long thread_id;
+    @Column
+    private long thread_id;
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "thread_id", nullable = false)
     private Thread thread;

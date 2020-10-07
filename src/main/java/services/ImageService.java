@@ -25,7 +25,7 @@ public class ImageService {
         //String filename="images/"+Long.toString(insertImage(base64))+".jpg";
         //byte[] data= DatatypeConverter.parseBase64Binary(base64.split(",")[1]);
         String base64Image=base64.split(",")[1];
-        String filename="./client/images/"+(PostService.getLastId()+1)+".jpg";
+        String filename="C:\\Games\\client\\"+(PostService.getLastId()+1)+".jpg";
         byte[] data= Base64.getDecoder().decode(base64Image);
         OutputStream stream = new FileOutputStream(filename);
         stream.write(data);
