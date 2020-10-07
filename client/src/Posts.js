@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import axios from 'axios';
+
 class Posts extends Component {
     state={posts:null,username:null,content:null,imagefilename:null};
     async componentDidMount() {
@@ -25,8 +26,14 @@ class Posts extends Component {
             delete payload.posts;
             console.log("STATE: ", this.state);
             console.log("PAYLOAD: ",payload);
-            axios.post(`http://localhost:8080/jsfwar3${this.props.match.url}`,payload);
-            
+            await axios.post(`http://localhost:8080/jsfwar3${this.props.match.url}`,payload)
+                 .then((response)=> {
+                     console.log(response);
+                     //payload=Object.assign([],response.data)
+                     },(error) => {console.log(error)}
+            );
+            //this.setState({posts:payload})
+ 
         })
         reader.readAsDataURL(document.getElementById("post-image").files[0]);
         //this.setState(this.state)

@@ -25,10 +25,10 @@ public class ThreadController {
         List<Thread> threads=ThreadService.getAllThreadsFromBoard(id);
         List<String> ops=new ArrayList<>();
         //for(Thread t : threads) ops.add(t.getContent());
-        for(Thread t: threads) {
-            t.setBoard(null);
-            t.setPosts(null);
-        }
+        //for(Thread t: threads) {
+         //   t.setBoard(null);
+        //    t.setPosts(null);
+        //}
         return Response.ok(threads).header("Access-Control-Allow-Origin","http://localhost:5000").build();
     }
     @POST

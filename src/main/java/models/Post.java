@@ -1,6 +1,7 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.inject.Inject;
@@ -28,6 +29,7 @@ public class Post {
     private String username;
     //@Column
     //private long thread_id;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "thread_id", nullable = false)
     private Thread thread;
