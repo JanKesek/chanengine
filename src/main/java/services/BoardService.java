@@ -5,16 +5,11 @@ import models.Board;
 import models.SessionUtils;
 import org.hibernate.Session;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.hibernate.query.Query;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-@Singleton
+//@Singleton
 public class BoardService {
     //private Board boardbean;
     //@Inject
