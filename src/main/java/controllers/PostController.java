@@ -20,21 +20,13 @@ public class PostController {
         //for(Post p:posts) {
         //    p.setThread(null);
         //}
-        return Response.ok(posts)
-                .header("Access-Control-Allow-Origin","http://localhost:5000")
-                .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-                .header("Access-Control-Allow-Headers", "Authorization, Content-Type")
-                .header("Content-Type", "application/json").build();
+        return Response.ok(posts).build();
     }
     @Path("/{id1}/{id2}")
     @OPTIONS
     @Consumes("application/json")
     public Response corsHeaders() {
-        return Response.ok()
-                .header("Access-Control-Allow-Origin","http://localhost:5000")
-                .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-                .header("Access-Control-Allow-Headers", "Authorization, Content-Type")
-                .header("Content-Type", "application/json").build();
+        return Response.ok().build();
     }
     @Path("/{id1}/{id2}")
     @POST
@@ -46,10 +38,6 @@ public class PostController {
         //for(Post p: responseData) {
         //    p.setThread(null);
         //}
-        return Response.ok(responseData)
-                .header("Access-Control-Allow-Origin","http://localhost:5000")
-                .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-                .header("Access-Control-Allow-Headers", "Authorization, Content-Type")
-                .header("Content-Type", "application/json").build();
+        return Response.ok(responseData).build();
     }
 }

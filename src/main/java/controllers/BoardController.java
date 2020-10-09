@@ -20,11 +20,6 @@ public class BoardController {
     public Response getAllBoardsREST() {
         List<Board> boards = BoardService.getAllBoards();
         //for(Board b : boards) b.setThreads(null);
-        return Response.ok(boards)
-                .header("Access-Control-Allow-Origin","http://localhost:5000")
-                .header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-                .header("Access-Control-Allow-Headers", "Authorization, Content-Type")
-                .header("Content-Type", "application/json")
-                .build();
+        return Response.ok(boards).build();
     }
 }

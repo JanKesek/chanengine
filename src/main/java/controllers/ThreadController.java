@@ -29,7 +29,7 @@ public class ThreadController {
          //   t.setBoard(null);
         //    t.setPosts(null);
         //}
-        return Response.ok(threads).header("Access-Control-Allow-Origin","http://localhost:5000").build();
+        return Response.ok(threads).build();
     }
     @POST
     @Path("/{id}")
@@ -37,7 +37,6 @@ public class ThreadController {
     @Produces({MediaType.APPLICATION_JSON})
     public Response postThreadToBoard(@PathParam("id") long id, Thread threadIn) {
         ThreadService.insertThreadToBoard(id,threadIn);
-        return Response.ok(getThreadsByID(id))
-                .header("Access-Control-Allow-Origin","http://localhost:5000").build();
+        return Response.ok(getThreadsByID(id)).build();
     }
 }
