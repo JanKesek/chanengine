@@ -7,4 +7,61 @@
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
         <param-value>client</param-value>
     </context-param>
+
+    <context-param>
+        <param-name>resteasy.role.based.security</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protect posts from delete</web-resource-name>
+            <url-pattern>/boards/delete/*/*/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+            <role-name>User</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protect boards from delete</web-resource-name>
+            <url-pattern>/deleteb/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>Secured kingdom</realm-name>
+    </login-config>
+
+    <!--
+        <login-config>
+            <auth-method>DIGEST</auth-method>
+            <realm-name>Digest secured kingdom</realm-name>
+        </login-config>
+
+        <login-config>
+            <auth-method>FORM</auth-method>
+            <form-login-config>
+                <form-login-page>/login.jsp</form-login-page>
+                <form-error-page>/fail_login.jsp</form-error-page>
+            </form-login-config>
+        </login-config>
+     -->
+    <security-role>
+        <role-name>Admin</role-name>
+    </security-role>
+    <security-role>
+        <role-name>User</role-name>
+    </security-role>
 </web-app>

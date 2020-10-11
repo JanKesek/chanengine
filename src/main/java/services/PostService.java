@@ -7,16 +7,19 @@ import org.hibernate.Session;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 import models.Thread;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 @Named
 @RequestScoped
 public class PostService {
     private static Session session= new SessionUtils().getSession();
     public static List<Post> getAllPostsByThreadID(long id) {
+        //session.joinTransaction();
         Thread thread= session.get(Thread.class,id);
         return thread.getPosts();
     }
@@ -46,8 +49,17 @@ public class PostService {
         session.save(post);
         session.getTransaction().commit();
     }
+    //@Transactional
+    public static void deletePost(long id) {
+        Transaction txn=session.beginTransaction();
+        Query query = session.createNativeQuery("DELETE from post where id=:id");
+        query.setParameter("id",id);
+        //session.joinTransaction();
+        query.executeUpdate();
+        txn.commit();
+    }
     public static long getLastId() {
         Query query=session.createQuery("select max(id) from post");
-        return query.getFirstResult();
+        return (long)query.setMaxResults(1).list().get(0);
     }
 }

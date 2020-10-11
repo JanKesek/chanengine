@@ -16,7 +16,9 @@ import java.util.Set;
 @Table(name="post")
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="identifier",sequenceName = "post_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "identifier")
     private Long id;
     @Column
     private String imagefilename;

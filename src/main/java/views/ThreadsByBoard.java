@@ -2,7 +2,6 @@ package views;
 
 import models.Thread;
 import services.ThreadService;
-import sun.jvm.hotspot.runtime.Threads;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -20,7 +19,6 @@ public class ThreadsByBoard {
     public ThreadsByBoard(){}
     public List<Thread> getThreads() {
         threads= ThreadService.getAllThreadsFromBoard( Long.parseLong(id));
-        System.out.println("DUUUUUUUUUPPPPPPPPPAAAAAAAAAAAaa "+threads.size());
         for(Thread t :threads) {
             System.out.println(t.getContent());
         }

@@ -5,6 +5,7 @@ import models.Post;
 import services.ImageService;
 import services.PostService;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
@@ -22,12 +23,7 @@ public class PostController {
         //}
         return Response.ok(posts).build();
     }
-    @Path("/{id1}/{id2}")
-    @OPTIONS
-    @Consumes("application/json")
-    public Response corsHeaders() {
-        return Response.ok().build();
-    }
+
     @Path("/{id1}/{id2}")
     @POST
     @Consumes("application/json")
@@ -38,6 +34,15 @@ public class PostController {
         //for(Post p: responseData) {
         //    p.setThread(null);
         //}
+        return Response.ok(responseData).build();
+    }
+    @Path("/delete/{id1}/{id2}/{id3}")
+    @DELETE
+    @Produces("application/json")
+    @RolesAllowed("User")
+    public Response deletePost(@PathParam("id2") long threadId,@PathParam("id3") long postId) {
+        PostService.deletePost(postId);
+        List<Post> responseData=PostService.getAllPostsByThreadID(threadId);
         return Response.ok(responseData).build();
     }
 }

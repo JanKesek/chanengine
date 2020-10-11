@@ -13,7 +13,9 @@ import java.util.List;
 @Table(name = "thread")
 public class Thread {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="identifier",sequenceName = "post_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "identifier")
     private long id;
     @Column
     private String imagefilename;
