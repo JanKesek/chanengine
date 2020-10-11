@@ -1,15 +1,19 @@
 {
   "name": "restclient",
+  "homepage": ".",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx react-scripts build",
+    "build": "npx react-scripts build && npx gulp",
     "start": "npx serve -s build"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-inline-source": "^4.0.0",
+    "gulp-replace": "^1.0.0",
     "react-scripts": "^3.4.3",
     "serve": "^11.3.2"
   },

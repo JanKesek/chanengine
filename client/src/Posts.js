@@ -4,11 +4,11 @@ import axios from 'axios';
 class Posts extends Component {
     state={posts:null,username:null,content:null,imagefilename:null};
     async componentDidMount() {
-        const url=`http://localhost:8080/jsfwar3${this.props.match.url}`;
+        const url=`http://34.68.138.17/jsfwar3${this.props.match.url}`;
         const response = await fetch(url);
         const data=await response.json();
         console.log(data);
-        //console.log(url);
+        console.log(url);
         this.setState({posts: data})
     }
     submitHandler = (e) => {
@@ -26,7 +26,7 @@ class Posts extends Component {
             delete payload.posts;
             console.log("STATE: ", this.state);
             console.log("PAYLOAD: ",payload);
-            await axios.post(`http://localhost:8080/jsfwar3${this.props.match.url}`,payload)
+            await axios.post(`http://34.68.138.17/jsfwar3${this.props.match.url}`,payload)
                  .then((response)=> {
                      console.log(response);
                      //payload=Object.assign([],response.data)
@@ -49,7 +49,7 @@ class Posts extends Component {
                             return (
                                 <div>
                             <h1>{post.username} {post.post_time} {post.id}  </h1>
-                            {post.imagefilename ? (<img src={`../${post.imagefilename}`}></img>):(<iv></iv>)}<p>{post.content}</p>
+                            {post.imagefilename ? (<img src={`/images/${post.imagefilename}`}></img>):(<iv></iv>)}<p>{post.content}</p>
                                 </div>
                             )
 

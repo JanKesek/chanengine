@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 class Boards extends Component {
     state={boards:null};
     async componentDidMount() {
-        const url="http://localhost:8080/jsfwar3/";
+        const url="http://34.68.138.17/jsfwar3";
         const response = await fetch(url);
         const data=await response.json();
         console.log(data);
